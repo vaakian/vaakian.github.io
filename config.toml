@@ -16,6 +16,7 @@ mainSections = ["frontend", "algorithm", "daily"]
 name = "RSS"
 link = "/index.xml"
 
+
 [[params.socials]]
 name = "About"
 link = "/about"
