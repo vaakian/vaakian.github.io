@@ -1,1 +1,4 @@
 
+[submodule "themes/yinyang"]
+	path = themes/yinyang
+	url = https://github.com/vaakian/hugo-theme-yinyang.git
