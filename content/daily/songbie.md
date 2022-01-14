@@ -2,6 +2,7 @@
 title: "《送别》"
 date: 2022-01-14T23:05:06+08:00
 draft: false
+categories: ["Test", "Poetry"]
 ---
 
 
