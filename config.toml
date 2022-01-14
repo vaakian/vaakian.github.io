@@ -1,0 +1,21 @@
+baseURL = "https://example.com"
+languageCode = "en-us"
+title = "Daily Notes"
+theme = "yinyang"
+DefaultContentLanguage = "cn"
+
+[author]
+  name = "VAAKIAN"
+  homepage = "https://notes.vaakian.com/"
+
+[params]
+# extraHead = '<h1>good</h1>'
+mainSections = ["frontend", "algorithm", "daily"]
+
+[[params.socials]]
+name = "RSS"
+link = "/index.xml"
+
+[[params.socials]]
+name = "About"
+link = "/about"
