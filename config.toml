@@ -1,6 +1,8 @@
-baseURL = "https://example.com"
+# https://github.com/joway/hugo-blog
+# blog.joway.io/
+baseURL = "https://notes.vaakian.com/"
 languageCode = "en-us"
-title = "Daily Notes"
+title = "Study Notes"
 theme = "yinyang"
 DefaultContentLanguage = "cn"
 
@@ -8,8 +10,20 @@ DefaultContentLanguage = "cn"
   name = "VAAKIAN"
   homepage = "https://notes.vaakian.com/"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    guessSyntax = true
+    noClasses = true
+    style = "tango" #lovelace arduino autumn tango xcode algol https://xyproto.github.io/splash/docs/longer/all.html
+    tabWidth = 2
+
 [params]
+Description = "Godless"
 # extraHead = '<h1>good</h1>'
+categories = ["frontend", "algorithm", "daily"]
 mainSections = ["frontend", "algorithm", "daily"]
 
 [[params.socials]]
@@ -20,3 +34,8 @@ link = "/index.xml"
 [[params.socials]]
 name = "About"
 link = "/about"
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+  category = "categories"
