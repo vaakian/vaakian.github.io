@@ -16,6 +16,6 @@ Vue2将对象新增属性/数组修改等操作，通过Vue.set来统一实现�
 以下代码测试拦截数组会发生的情况
 const arr = [1, 2, 3, 4, 5, 6] for (let key in arr) { let value = arr[key] Object.defineProperty(arr, key, { get() { console.log(`get: ${key}`) return value }, set(newValue) { console.log(`set: ${key}to ${newValue}`) return value = newValue } }) } arr[0] = 999 // 打印：set：0 to 999 arr[3] // 打印：get：3 arr.</description></item><item><title>Introduction</title><link>https://notes.vaakian.com/frontend/introduction/</link><pubDate>Tue, 14 Jan 2020 20:09:20 +0800</pubDate><guid>https://notes.vaakian.com/frontend/introduction/</guid><description>Geting Started 从很久很久以前就想记录下来日常的学习笔记（不是博客），但都无疾而终。从wordpress=&amp;gt;Notion=&amp;gt;github issue都感觉差点味道。
 而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，所以尝试用hugo来继续记录吧。
-为什么不是hexo？ writen in Go, so it&amp;rsquo;s fast.
+为什么不是hexo？ writen in Go, which it&amp;rsquo;s fast.
 About 主前端，不过其它的也都有接触。
 2022本科毕业，即将入职某大厂。</description></item></channel></rss>
