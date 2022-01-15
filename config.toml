@@ -5,9 +5,9 @@ languageCode = "en-us"
 title = "Study Notes"
 theme = "yinyang"
 DefaultContentLanguage = "cn"
-
+# disqusShortname = "vaa-note"
 [author]
-  name = "VAAKIAN"
+  name = "VAANOTE"
   homepage = "https://notes.vaakian.com/"
 
 [markup]
@@ -21,6 +21,7 @@ DefaultContentLanguage = "cn"
     tabWidth = 2
 
 [params]
+disqus = "vaa-note"
 Description = "Godless"
 # extraHead = '<h1>good</h1>'
 categories = ["frontend", "algorithm", "daily"]

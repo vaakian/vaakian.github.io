@@ -34,12 +34,12 @@ RTCPeerConnection负责很多事情，包括：
 
 RTC创建连接过程主要是通过一个信令服务器进行SDP信息交换，这个过程可以通过WebSocket进行，也可以通过HTTP进行，当然WebSocket最佳。
 ```js
+const conn = new SomeWebsocketConn()
 const pc = new RTCPeerConnection(null)
-
 function sendOffer(desc) {
     // 发送offer到服务器上
-    ws.send({type: 'offer', sdp: desc})
-    .then(gotAnswer)
+    conn.send({type: 'offer', sdp: desc})
+    // .then(gotAnswer)
 }
 // 当成功创建offer时调用
 pc.createOffer(gotOffer)
@@ -49,6 +49,7 @@ function gotOffer(desc) {
     sendOffer(desc)
 }
 // 当服务器返回answer时调用
+conn.onAnswer(gotAnswer)
 function gotAnswer(desc) {
     // 当设置远程描述（SDP）之后，WebRTC就会开始创建连接
     pc.setRemoteDescription(desc)
