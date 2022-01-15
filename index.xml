@@ -18,8 +18,8 @@ Vue2将数组的7个变异方法进行了重写，也就是更改了Array原型�
 Vue2将对象新增属性/数组修改等操作，通过Vue.set来统一实现，这样其实是直接告诉Vue自己的set行为，即要新增/修改的属性名，然后重新劫持或者通知修改Deps[key].notify()，Vue2才可以监测到「新增数据/数组下标」的变化。
 以下代码测试拦截数组会发生的情况
 const arr = [1, 2, 3, 4, 5, 6] for (let key in arr) { let value = arr[key] Object.defineProperty(arr, key, { get() { console.log(`get: ${key}`) return value }, set(newValue) { console.log(`set: ${key}to ${newValue}`) return value = newValue } }) } arr[0] = 999 // 打印：set：0 to 999 arr[3] // 打印：get：3 arr.</description></item><item><title>Introduction</title><link>https://notes.vaakian.com/frontend/introduction/</link><pubDate>Tue, 14 Jan 2020 20:09:20 +0800</pubDate><guid>https://notes.vaakian.com/frontend/introduction/</guid><description>Geting Started 从很久很久以前就想记录下来日常的学习笔记（不是博客），但都无疾而终。从wordpress=&amp;gt;Notion=&amp;gt;github issue都感觉差点味道。
-而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，所以尝试用hugo来继续记录吧。
-为什么不是hexo？ writen in Go, which it&amp;rsquo;s fast.
+而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，索性还是尝试用hugo来继续记录吧。
+为什么不是hexo？ written in Go, which it&amp;rsquo;s fast.
 About 主前端，不过其它的也都有接触。
 2022本科毕业，即将入职某大厂。</description></item><item><title>About Hugo</title><link>https://notes.vaakian.com/about/</link><pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate><guid>https://notes.vaakian.com/about/</guid><description>Hugo is the world’s fastest framework for building websites. It is written in Go.
 It makes use of a variety of open source projects including:

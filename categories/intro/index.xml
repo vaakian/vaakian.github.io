@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Intro on Study Notes</title><link>https://notes.vaakian.com/categories/intro/</link><description>Recent content in Intro on Study Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 14 Jan 2020 20:09:20 +0800</lastBuildDate><atom:link href="https://notes.vaakian.com/categories/intro/index.xml" rel="self" type="application/rss+xml"/><item><title>Introduction</title><link>https://notes.vaakian.com/frontend/introduction/</link><pubDate>Tue, 14 Jan 2020 20:09:20 +0800</pubDate><guid>https://notes.vaakian.com/frontend/introduction/</guid><description>Geting Started 从很久很久以前就想记录下来日常的学习笔记（不是博客），但都无疾而终。从wordpress=&amp;gt;Notion=&amp;gt;github issue都感觉差点味道。
-而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，所以尝试用hugo来继续记录吧。
-为什么不是hexo？ writen in Go, which it&amp;rsquo;s fast.
+而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，索性还是尝试用hugo来继续记录吧。
+为什么不是hexo？ written in Go, which it&amp;rsquo;s fast.
 About 主前端，不过其它的也都有接触。
 2022本科毕业，即将入职某大厂。</description></item></channel></rss>
