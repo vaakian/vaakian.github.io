@@ -13,7 +13,7 @@ categories: ["Intro"]
 
 
 ### 为什么不是`hexo`？
-> writen in Go, so it's fast.
+> writen in Go, which it's fast.
 
 
 ## About
