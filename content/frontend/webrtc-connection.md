@@ -1,9 +1,12 @@
 ---
-title: "论文草稿：WebRTC--RTCPeerConncetion"
+title: "WebRTC--RTCPeerConncetion"
 date: 2022-01-15T13:29:47+08:00
 draft: false
-categories: ["论文"]
+categories: ["Frontend", "WebRTC"]
 ---
+
+
+> 论文草稿
 
 ## what is WebRTC
 
@@ -97,7 +100,7 @@ function handleError(err) {
 TURN虽然一定能够成功建立信道，但也有一定的代价。当点对点数据通路无法建立时，TURN会尝试使用服务器进行代理转发，这样带来的代价是更多的服务器资源和更高的延迟，因为这种方式增加了一个网络环节。
 
 ### TIPs
-> Google提供了一个STUN服务，但不TURN服务。因为STUN相对于TURN对于带宽的消耗更少，只需要拿到自己的公网IP。而TURN则需要开发者自行搭建。
+> Google提供了一个STUN服务，但不提供TURN服务。因为STUN相对于TURN对于带宽的消耗更少，只需要拿到自己的公网IP。而TURN服务器代理转发所有数据流量，Google无法满足全球如此大流量需求，所以该服务还是需要开发者自行搭建。
 
 Google STUN服务地址：[stun.l.google.com:19302](stun.l.google.com:19302)
 
