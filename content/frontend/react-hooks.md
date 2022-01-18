@@ -2,7 +2,7 @@
 title: "React Hooks"
 date: 2022-01-18T14:47:17+08:00
 draft: false
-categories: ["React", "JavaScript"]
+categories: ["React", "Frontend", "JavaScript"]
 ---
 
 [TOC]
