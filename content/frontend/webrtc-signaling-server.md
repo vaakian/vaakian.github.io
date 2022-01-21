@@ -13,7 +13,7 @@ categories: ["WebRTC", "NodeJS"]
 - sdp用于协商会话连接方式之前的必要信息
 - ice协商的结果，用于候选的连接方式
 
-客户端”仅在“join时带上id和nick，然后服务器存储该信息与Client对应。存储方式见：[how to keep track of clients with WebSockets](https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc)，或者直接在`server.clients`中挂载信息。\
+~~客户端”仅在“join时带上id和nick~~，然后服务器存储该信息与Client对应。存储方式见：[how to keep track of clients with WebSockets](https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc)，或者直接在`server.clients`中挂载信息。\
 在offer和answer时，服务器取出对应的id和nick转发出去。
 
 - offer一定是广播，通过`server.clients.forEach`发送
