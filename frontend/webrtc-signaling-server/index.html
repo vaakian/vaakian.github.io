@@ -76,7 +76,7 @@
 <li>sdp用于协商会话连接方式之前的必要信息</li>
 <li>ice协商的结果，用于候选的连接方式</li>
 </ul>
-<p>客户端”仅在“join时带上id和nick，然后服务器存储该信息与Client对应。存储方式见：<a href=https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc>how to keep track of clients with WebSockets</a>，或者直接在<code>server.clients</code>中挂载信息。<br>
+<p><del>客户端”仅在“join时带上id和nick</del>，然后服务器存储该信息与Client对应。存储方式见：<a href=https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc>how to keep track of clients with WebSockets</a>，或者直接在<code>server.clients</code>中挂载信息。<br>
 在offer和answer时，服务器取出对应的id和nick转发出去。</p>
 <ul>
 <li>offer一定是广播，通过<code>server.clients.forEach</code>发送</li>
