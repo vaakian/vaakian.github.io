@@ -22,67 +22,67 @@ categories: ["WebRTC", "NodeJS"]
 > client对应表
 ```js
 class ClientsMap {
-    constructor(server) {
-        this.clients = new Map();
-        server.on('connection', (ws, req) => {
-            ws.on('message', (message) => {
-                const data = JSON.parse(message);
-                if(data.type === 'join') {
-                    this.clients.set(data.id, {
-                        id: data.id,
-                        nick: data.nick,
-                        ws: ws
-                    });
-                    // 加入时，先注册好离开事件
-                    ws.on('close', () => {
-                        this.clients.delete(data.id);
-                        this.broadcast(JSON.stringify({
-                            type: 'leave',
-                            payload: {
-                                id: data.id,
-                                nick: data.nick
-                            }
-                        }));
-                    });
-                }
-                
-            });
-            
-        });
-    }
-
-    add(client) {
-        this.clients.set(client.id, client);
-    }
-
-    remove(client) {
-        this.clients.delete(client.id);
-    }
-
-    get(id) {
-        return this.clients.get(id);
-    }
-
-    forEach(callback) {
-        this.clients.forEach(callback);
-    }
-    // 广播offer
-    broadcast(senderId, data) {
-        const sender = this.get(senderId);
-        sender && this.clients.forEach((client, id) => {
-            if (id !== senderId) {
-                // 向这个client发送
-                client.ws.send(data);
-            }
-        });
-    }
-    // 定向回复answer
-    sendTo(receiverId, data) {
-        const receiver = this.clients.get(receiverId);
-        if (receiver) {
-            receiver.ws.send(data);
+  constructor(server) {
+    this.clients = new Map()
+    server.on('connection', (ws, req) => {
+      ws.on('message', (message) => {
+        const data = JSON.parse(message)
+        if (data.type === 'join') {
+          this.clients.set(data.id, {
+            id: data.id,
+            nick: data.nick,
+            ws: ws
+          })
+          // 加入时，先注册好离开事件
+          ws.on('close', () => {
+            this.clients.delete(data.id)
+            this.broadcast(JSON.stringify({
+              type: 'leave',
+              payload: {
+                id: data.id,
+                nick: data.nick
+              }
+            }))
+          })
         }
+
+      })
+
+    })
+  }
+
+  add(client) {
+    this.clients.set(client.id, client)
+  }
+
+  remove(client) {
+    this.clients.delete(client.id)
+  }
+
+  get(id) {
+    return this.clients.get(id)
+  }
+
+  forEach(callback) {
+    this.clients.forEach(callback)
+  }
+  // 广播offer
+  broadcast(senderId, data) {
+    const sender = this.get(senderId)
+    sender && this.clients.forEach((client, id) => {
+      if (id !== senderId) {
+        // 向这个client发送
+        client.ws.send(data)
+      }
+    })
+  }
+  // 定向回复answer
+  sendTo(receiverId, data) {
+    const receiver = this.clients.get(receiverId)
+    if (receiver) {
+      receiver.ws.send(data)
     }
+  }
 }
 ```
 
