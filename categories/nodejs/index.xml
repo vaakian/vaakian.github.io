@@ -3,4 +3,4 @@
 sdp用于协商会话连接方式之前的必要信息 ice协商的结果，用于候选的连接方式 客户端”仅在“join时带上id和nick，然后服务器存储该信息与Client对应。存储方式见：how to keep track of clients with WebSockets，或者直接在server.clients中挂载信息。
 在offer和answer时，服务器取出对应的id和nick转发出去。
 offer一定是广播，通过server.clients.forEach发送 answer是定向发送，带有receiverId，通过clientsMap发送 client对应表
-class ClientsMap { constructor(server) { this.clients = new Map(); server.on(&amp;#39;connection&amp;#39;, (ws, req) =&amp;gt; { ws.on(&amp;#39;message&amp;#39;, (message) =&amp;gt; { const data = JSON.parse(message); if(data.type === &amp;#39;join&amp;#39;) { this.clients.set(data.id, { id: data.id, nick: data.nick, ws: ws }); // 加入时，先注册好离开事件 ws.on(&amp;#39;close&amp;#39;, () =&amp;gt; { this.</description></item></channel></rss>
+class ClientsMap { constructor(server) { this.clients = new Map() server.on(&amp;#39;connection&amp;#39;, (ws, req) =&amp;gt; { ws.on(&amp;#39;message&amp;#39;, (message) =&amp;gt; { const data = JSON.parse(message) if (data.type === &amp;#39;join&amp;#39;) { this.clients.set(data.id, { id: data.id, nick: data.nick, ws: ws }) // 加入时，先注册好离开事件 ws.on(&amp;#39;close&amp;#39;, () =&amp;gt; { this.</description></item></channel></rss>
