@@ -97,6 +97,8 @@ interface LocalPeer {
 ```
 ### 2.2 建立流程 & 事件处理
 
+> TODO: 整个WebSocket+RTCPeerConnection的连接过程，都先不要用hooks来写，太麻烦。后面暴露出几个重要的方法，然后通过简单的hooks二次封装简化编码流程。
+
 #### 1> 定义事件处理器（eventHandlers）
 
 先定义数据交换模型
@@ -114,13 +116,13 @@ interface PayloadMap {
 }
 // 客户端发送，服务端接受的数据格式
 type Message = {
-    [key in keyof PayloadMap]: {
-        type: T;
+    [k in keyof PayloadMap]: {
+        type: k;
         nick: string;
         id: string;
         receiverId?: string | null;
         // playload的类型取决于type的值
-        payload: PayloadMap[T];
+        payload: PayloadMap[k];
     }
 }[keyof PayloadMap]
 
@@ -130,10 +132,11 @@ type Message = {
 
 ```js
 function gotOffer(offer: RTCSessionDescriptionInit) {
+    // 本地成功创建offer
 }
 
 function onOffer(offer: RTCSessionDescriptionInit) {
-  gotOffer(offer);
+    // 接收到远程发来的offer
 }
 ```
 ##### 3> 处理answer
