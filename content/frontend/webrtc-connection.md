@@ -82,12 +82,14 @@ function handleError(err) {
 
 ## NAT穿透：STUN/TURN
 
-在早期的网络环境中，每个设备都会有一个公网IP，Peer之间可以很容易的进行通信。但在如今公网IPV4枯竭，遍地NAT的网络环境下，这件事变得更加复杂起来。
+在早期的网络环境中，每个设备都会有一个公网IP，Peer之间可以很容易的进行通信。但在如今公网IPv4枯竭，遍地NAT的网络环境下，这件事变得更加复杂起来。不过，等到IPv6普及之后，每个设备都能够拥有一个公网IP地址，这个问题也就随之解决了。
 
 ### STUN
 
 在本地是局域网IP时，会尝试使用STUN服务器查询自己的公网IP，服务器返回一个公网IP，然后尝试通过这个IP和另外一个Peer建立点对点连接。如果成功，这个时候的通信依然是点对点（P2P）方式。\
 实际上，STUN相当于尝试在锥形NAT网络环境中进行穿透建立P2P连接。如果不是「锥形NAT」网络环境（比如对「称型NAT」），则STUN不会成功。那么就只能通过最终解决方案——TURN。
+
+> 幸运的是，经过本人测试，国内大部分NAT网络环境都是锥形NAT，所以STUN在大部分情况下都能够正常打通P2P通道。
 
 ### TURN
 
@@ -99,6 +101,9 @@ function handleError(err) {
 
 TURN虽然一定能够成功建立信道，但也有一定的代价。当点对点数据通路无法建立时，TURN会尝试使用服务器进行代理转发，这样带来的代价是更多的服务器资源和更高的延迟，因为这种方式增加了一个网络环节。
 
+> MDN图示WebRTC复杂的连接过程
+
+![](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Connectivity/webrtc-complete-diagram.png)
 ### TIPs
 > Google提供了一个STUN服务，但不提供TURN服务。因为STUN相对于TURN对于带宽的消耗更少，只需要拿到自己的公网IP。而TURN服务器代理转发所有数据流量，Google无法满足全球如此大流量需求，所以该服务还是需要开发者自行搭建。
 
