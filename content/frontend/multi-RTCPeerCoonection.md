@@ -28,7 +28,7 @@ categories: ["frontend", "WebRTC"]
 1. 加入房间，发送JoinRoom消息，带上自己的nick和id（唯一标识），服务器存储信息对应，回复房间Clients列表。
 2. 如果房间有人，发送Offer消息（带nick和id），服务器广播之后，其他人回复Answer消息（带个人信息和将要发往的id）
 3. 前端接收到Answer，将对应的PeerConnection与该id和nick对应。此后的连接就容易对应了。
-
+![WebRTC Signaling](/images/webrtc-signaling.png)
 ```ts
 peerConnection.createOffer()
 // 1. 创建offer
