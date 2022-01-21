@@ -150,6 +150,9 @@
 <span style=color:#000;font-weight:700>}</span>
 
 </code></pre></div><h3 id=22-建立流程--事件处理>2.2 建立流程 & 事件处理</h3>
+<blockquote>
+<p>TODO: 整个WebSocket+RTCPeerConnection的连接过程，都先不要用hooks来写，太麻烦。后面暴露出几个重要的方法，然后通过简单的hooks二次封装简化编码流程。</p>
+</blockquote>
 <h4 id=1-定义事件处理器eventhandlers>1> 定义事件处理器（eventHandlers）</h4>
 <p>先定义数据交换模型</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-ts data-lang=ts><span style=color:#204a87;font-weight:700>interface</span> <span style=color:#000>PeerInfo</span> <span style=color:#000;font-weight:700>{</span>
@@ -165,23 +168,24 @@
 <span style=color:#000;font-weight:700>}</span>
 <span style=color:#8f5902;font-style:italic>// 客户端发送，服务端接受的数据格式
 </span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>type</span> <span style=color:#000>Message</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000;font-weight:700>{</span>
-    <span style=color:#000;font-weight:700>[</span><span style=color:#000>key</span> <span style=color:#204a87;font-weight:700>in</span> <span style=color:#204a87;font-weight:700>keyof</span> <span style=color:#000>PayloadMap</span><span style=color:#000;font-weight:700>]</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>type</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>T</span><span style=color:#000;font-weight:700>;</span>
+    <span style=color:#000;font-weight:700>[</span><span style=color:#000>k</span> <span style=color:#204a87;font-weight:700>in</span> <span style=color:#204a87;font-weight:700>keyof</span> <span style=color:#000>PayloadMap</span><span style=color:#000;font-weight:700>]</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000;font-weight:700>{</span>
+        <span style=color:#204a87;font-weight:700>type</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>k</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#000>nick</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#000>id</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#000>receiverId?</span>: <span style=color:#204a87;font-weight:700>string</span> <span style=color:#ce5c00;font-weight:700>|</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#8f5902;font-style:italic>// playload的类型取决于type的值
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>payload</span>: <span style=color:#204a87;font-weight:700>PayloadMap</span><span style=color:#000;font-weight:700>[</span><span style=color:#000>T</span><span style=color:#000;font-weight:700>];</span>
+</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>payload</span>: <span style=color:#204a87;font-weight:700>PayloadMap</span><span style=color:#000;font-weight:700>[</span><span style=color:#000>k</span><span style=color:#000;font-weight:700>];</span>
     <span style=color:#000;font-weight:700>}</span>
 <span style=color:#000;font-weight:700>}[</span><span style=color:#204a87;font-weight:700>keyof</span> <span style=color:#000>PayloadMap</span><span style=color:#000;font-weight:700>]</span>
 
 </code></pre></div><h5 id=2-处理offer>2> 处理offer</h5>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#204a87;font-weight:700>function</span> <span style=color:#000>gotOffer</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>offer</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>RTCSessionDescriptionInit</span><span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>{</span>
-<span style=color:#000;font-weight:700>}</span>
+    <span style=color:#8f5902;font-style:italic>// 本地成功创建offer
+</span><span style=color:#8f5902;font-style:italic></span><span style=color:#000;font-weight:700>}</span>
 
 <span style=color:#204a87;font-weight:700>function</span> <span style=color:#000>onOffer</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>offer</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>RTCSessionDescriptionInit</span><span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>{</span>
-  <span style=color:#000>gotOffer</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>offer</span><span style=color:#000;font-weight:700>);</span>
-<span style=color:#000;font-weight:700>}</span>
+    <span style=color:#8f5902;font-style:italic>// 接收到远程发来的offer
+</span><span style=color:#8f5902;font-style:italic></span><span style=color:#000;font-weight:700>}</span>
 </code></pre></div><h5 id=3-处理answer>3> 处理answer</h5>
 <h5 id=4-处理icecandidate>4> 处理icecandidate</h5>
 <h3 id=22-什么是track>2.2 什么是track</h3>
