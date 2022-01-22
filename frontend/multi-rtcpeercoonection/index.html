@@ -144,8 +144,8 @@
 
 <span style=color:#8f5902;font-style:italic>// 一个LocalPeer对应对个Peers
 </span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>interface</span> <span style=color:#000>LocalPeer</span> <span style=color:#000;font-weight:700>{</span>
-    <span style=color:#000>id</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
-    <span style=color:#000>nick</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
+    <span style=color:#8f5902;font-style:italic>// id: string; 本地其实不需要知道id，由服务器根据socket连接来区分客户端
+</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>nick</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
     <span style=color:#000>Peers</span>: <span style=color:#204a87;font-weight:700>Peer</span><span style=color:#000;font-weight:700>[];</span>
 <span style=color:#000;font-weight:700>}</span>
 
@@ -164,14 +164,14 @@
   <span style=color:#000>offer</span>: <span style=color:#204a87;font-weight:700>RTCSessionDescriptionInit</span><span style=color:#000;font-weight:700>;</span>
   <span style=color:#000>answer</span>: <span style=color:#204a87;font-weight:700>RTCSessionDescriptionInit</span><span style=color:#000;font-weight:700>;</span>
   <span style=color:#000>icecandidate</span>: <span style=color:#204a87;font-weight:700>RTCIceCandidateInit</span><span style=color:#000;font-weight:700>;</span>
-  <span style=color:#000>leave</span>: <span style=color:#204a87;font-weight:700>PeerInfo</span><span style=color:#000;font-weight:700>;</span>
+  <span style=color:#8f5902;font-style:italic>//leave 只可能是客户端接收，PeerInfo由服务端添加
+</span><span style=color:#8f5902;font-style:italic></span>  <span style=color:#000>leave</span>: <span style=color:#204a87;font-weight:700>PeerInfo</span><span style=color:#000;font-weight:700>;</span>
 <span style=color:#000;font-weight:700>}</span>
 <span style=color:#8f5902;font-style:italic>// 客户端发送，服务端接受的数据格式
 </span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>type</span> <span style=color:#000>Message</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000;font-weight:700>{</span>
     <span style=color:#000;font-weight:700>[</span><span style=color:#000>k</span> <span style=color:#204a87;font-weight:700>in</span> <span style=color:#204a87;font-weight:700>keyof</span> <span style=color:#000>PayloadMap</span><span style=color:#000;font-weight:700>]</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000;font-weight:700>{</span>
         <span style=color:#204a87;font-weight:700>type</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>k</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#000>nick</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
-        <span style=color:#000>id</span>: <span style=color:#204a87;font-weight:700>string</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#000>receiverId?</span>: <span style=color:#204a87;font-weight:700>string</span> <span style=color:#ce5c00;font-weight:700>|</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#000;font-weight:700>;</span>
         <span style=color:#8f5902;font-style:italic>// playload的类型取决于type的值
 </span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>payload</span>: <span style=color:#204a87;font-weight:700>PayloadMap</span><span style=color:#000;font-weight:700>[</span><span style=color:#000>k</span><span style=color:#000;font-weight:700>];</span>
