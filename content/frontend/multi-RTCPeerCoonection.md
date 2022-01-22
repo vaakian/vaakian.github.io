@@ -89,7 +89,7 @@ interface Peer {
 
 // 一个LocalPeer对应对个Peers
 interface LocalPeer {
-    id: string;
+    // id: string; 本地其实不需要知道id，由服务器根据socket连接来区分客户端
     nick: string;
     Peers: Peer[];
 }
@@ -112,6 +112,7 @@ interface PayloadMap {
   offer: RTCSessionDescriptionInit;
   answer: RTCSessionDescriptionInit;
   icecandidate: RTCIceCandidateInit;
+  //leave 只可能是客户端接收，PeerInfo由服务端添加
   leave: PeerInfo;
 }
 // 客户端发送，服务端接受的数据格式
@@ -119,7 +120,6 @@ type Message = {
     [k in keyof PayloadMap]: {
         type: k;
         nick: string;
-        id: string;
         receiverId?: string | null;
         // playload的类型取决于type的值
         payload: PayloadMap[k];

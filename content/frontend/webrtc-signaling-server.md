@@ -90,3 +90,136 @@ class ClientsMap {
 const WebSocket = require('ws')
 const wss = new WebSocket.Server({ port: 8080 })
 ```
+
+
+> 草稿
+
+file: `signal.js`
+
+```js
+
+const ws = require('ws')
+
+const log = console.log
+
+
+class SignalEventHandler {
+  constructor(signalServer) {
+    this.signalServer = signalServer
+  }
+  join(client, message) {
+    // store userInfo
+    const userInfo = {
+      nick: message.payload.nick,
+      id: client.userInfo.id
+    }
+    client.userInfo = userInfo
+    log(`${userInfo.id}  ${userInfo.nick} joined`)
+    // or response with room info?
+  }
+  offer(client, message) {
+    this.signalServer.broadcast(client.userInfo.id, {
+      ...message,
+      // just attach userInfo
+      userInfo: client.userInfo,
+    })
+    log(`${client.userInfo.nick} incoming offer`)
+  }
+  leave(client) {
+    this.signalServer.broadcast(client.userInfo.id, client.userInfo)
+  }
+  answer(client, message) {
+    // data must contain the receiverId
+    // client: the offer replier
+    this.signalServer.sendTo(message.receiverId, {
+      ...message,
+      // jus attach userInfo
+      userInfo: client.userInfo,
+    })
+    /*
+    {
+      type: 'answer',
+      data: {sdp, type},
+      receiverId: 'xxx',
+      userInfo: {id, nick},
+    }
+    */
+    log(`${client.userInfo.nick} incoming answer(reply offer)`)
+  }
+  candidate(client, message) {
+    this.signalServer.broadcast(client.userInfo.id, {
+      ...message,
+      // just attach userInfo
+      userInfo: client.userInfo,
+    })
+    log(`${client.userInfo.nick} incoming candidate`)
+  }
+  // this is bind to ws
+  handle(client, message) {
+    try {
+      message = JSON.parse(message)
+      // {type, receiverId, payload}
+      this[message.type](client, message)
+    } catch (err) {
+      log(err)
+    }
+  }
+}
+
+class SignalServer {
+  constructor() {
+    this.server = new ws.WebSocketServer(...arguments)
+    this.server.on('connection', (ws, req) => {
+      ws.userInfo = { id: req.headers['sec-websocket-key'] }
+      // log('client connected', req.headers['sec-websocket-key'])
+      const signalEventHandler = new SignalEventHandler(this)
+      ws.on('message', function (message) {
+        signalEventHandler.handle(ws, message)
+      })
+      // leave event on connection
+      ws.on('close', function () {
+        signalEventHandler.leave(ws)
+      })
+    })
+  }
+  on() {
+    this.server.on(...arguments)
+  }
+
+  broadcast(senderId, data) {
+    this.server.clients.forEach((client) => {
+      if (senderId !== client.userInfo.id) {
+        client.send(JSON.stringify({
+          ...data,
+          senderId: senderId
+        }))
+      }
+    })
+  }
+  sendTo(receiverId, data) {
+    this.server.clients.forEach(client => {
+      if (client.userInfo.id === receiverId) {
+        client.send(JSON.stringify(data))
+      }
+    })
+  }
+}
+// const srv = SignalServer({ port: 666 })
+
+module.exports = {
+   serve(options) {
+    return new SignalServer(options)
+  }
+}
+```
+
+file: `index.js`
+
+
+```js
+
+const SignalServer = require("./signal")
+
+const srv = SignalServer.serve({ port: 666 })
+```
+

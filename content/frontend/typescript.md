@@ -20,6 +20,7 @@ interface PayloadMap {
   offer: RTCSessionDescriptionInit
   answer: RTCSessionDescriptionInit
   icecandidate: RTCIceCandidateInit
+  // leave只有单接受情况，客户端不会主动发送。
   leave: PeerInfo
 }
 
@@ -27,7 +28,6 @@ type Message = {
   [K in keyof PayloadMap]: {
     type: K
     nick: string
-    id: string
     receiverId?: string | null
     // playload的类型取决于type的值
     payload: PayloadMap[K]
