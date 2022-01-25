@@ -72,16 +72,17 @@ peerConnection.createOffer()
 
 一个远程id对应一个本地RTCPeerConnection，多个Peer就存入一个Peers数组。
 ```ts
+interface Media {
+  display: MediaStreamTrack[]
+  user: MediaStreamTrack[]
+}
 interface Peer {
     id: string;
     nick: string;
     // LocalPeer与该Peer连接的RTCPeerConnection
     peerConnection: RTCPeerConnection;
     // track有两种，屏幕共享和用户音视频（远程向本地共享的）
-    media: {
-        display: MediaStreamTrack[];
-        user: MediaStreamTrack[];
-    }
+    media: Media;
     // dataChannel用于发送文本或其它二进制数据（文件）
     dataChannel: RTCDataChannel | null;
 }
@@ -92,12 +93,14 @@ interface LocalPeer {
     // id: string; 本地其实不需要知道id，由服务器根据socket连接来区分客户端
     nick: string;
     Peers: Peer[];
+    media: Media;
 }
 
 ```
 ### 2.2 建立流程 & 事件处理
 
 > TODO: 整个WebSocket+RTCPeerConnection的连接过程，都先不要用hooks来写，太麻烦。后面暴露出几个重要的方法，然后通过简单的hooks二次封装简化编码流程。
+
 
 #### 1> 定义事件处理器（eventHandlers）
 
@@ -119,7 +122,7 @@ interface PayloadMap {
 type Message = {
     [k in keyof PayloadMap]: {
         type: k;
-        nick: string;
+        // nick: string; no need
         receiverId?: string | null;
         // playload的类型取决于type的值
         payload: PayloadMap[k];
@@ -127,18 +130,11 @@ type Message = {
 }[keyof PayloadMap]
 
 ```
+##### 加入房间的几种情况
 
 ##### 2> 处理offer
 
-```js
-function gotOffer(offer: RTCSessionDescriptionInit) {
-    // 本地成功创建offer
-}
 
-function onOffer(offer: RTCSessionDescriptionInit) {
-    // 接收到远程发来的offer
-}
-```
 ##### 3> 处理answer
 
 
@@ -148,7 +144,7 @@ function onOffer(offer: RTCSessionDescriptionInit) {
 
 ### 2.2 什么是track
 
-track英文`/træk/`译为`轨道`，在WebRTC中，Track同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的WebRTC版本PeerConnection通过AddStream()方法添加Stream，而不是track。后来的版本，PeerConnection通过addTrack()方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该track。接收者可以单独接收音频轨道和单独接收视频轨道。而AddStream()的方式不能够选择性的接收。
+track英文`/træk/`译为`轨道`，是一个[MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack)的实例。在WebRTC中，Track同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的WebRTC版本PeerConnection通过AddStream()方法添加Stream，而不是track。后来的版本，PeerConnection通过addTrack()方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该track。接收者可以单独接收音频轨道和单独接收视频轨道。而AddStream()的方式不能够选择性的接收。
 ```js
 const remoteStream = new MediaStream()
 pc.addEventListener('track', (event) => {
@@ -162,3 +158,35 @@ pc.addEventListener('track', (event) => {
     }  
 })
 ```
+
+实现禁音，视频暂停，都可以使用MediaStreamTrack.enabled属性来实现。己方将某个`track.enable = false`，其他接收该track的客户端会得到`muted`为`false`，这个过程全部由track内部进行，不需要再进行编码通知。
+
+```ts
+
+function onMute(event: MediaStreamTrackEvent) {
+    // enabled: false, no media data provision
+}
+function onUnmute(event: MediaStreamTrackEvent) {
+    // enabled: true, media data provided
+}
+const remoteStream = new MediaStream()
+const pc = new RTCPeerConnection()
+pc.addEventListener('track', (event) => {
+  // incoming track
+  // may be audio or video, both holds the mute/unmute event
+  const { track } = event
+  track.addEventListener('mute', onMute)
+})
+
+```
+
+
+
+
+
+#### DRAFT
+
+
+> pc = new RTCPeerConnection()  --> pc.addTrack(someLocalTrack) --> pc.addEventListener('track, icecandidate') --> setLocal, setRemote
+
+在连接之前要做的事情：添加事件，添加本地track。
