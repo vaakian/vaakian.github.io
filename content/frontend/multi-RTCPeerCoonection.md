@@ -190,3 +190,10 @@ pc.addEventListener('track', (event) => {
 > pc = new RTCPeerConnection()  --> pc.addTrack(someLocalTrack) --> pc.addEventListener('track, icecandidate') --> setLocal, setRemote
 
 在连接之前要做的事情：添加事件，添加本地track。
+
+
+
+### Test
+
+ 收方：dosomeThing
+ 发送方：dosomeThing

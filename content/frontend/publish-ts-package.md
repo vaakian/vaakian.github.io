@@ -26,6 +26,14 @@ npm init
 配置package.json
 "main": "lib/index.js",即import的默认入口
 "types": "lib/index.d.ts", 待考察
+"exclude"
+"include"
+"declaration" 如何管理d.ts文件和types属性，让引包用户能够正常拿到type？
+
+npm login
+
+npm publish
+
 ## 使用
 
 > npm i -s xpeer
