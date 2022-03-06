@@ -148,6 +148,14 @@ function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return 
   <span style=color:#000;font-weight:700>.</span><span style=color:#000>then</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>v</span> <span style=color:#000;font-weight:700>=&gt;</span> <span style=color:#000>iterate</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>v</span><span style=color:#000;font-weight:700>))</span>
   <span style=color:#000;font-weight:700>.</span><span style=color:#204a87;font-weight:700>catch</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>err</span> <span style=color:#000;font-weight:700>=&gt;</span> <span style=color:#000>it</span><span style=color:#000;font-weight:700>.</span><span style=color:#204a87;font-weight:700>throw</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>err</span><span style=color:#000;font-weight:700>))</span>
 </code></pre></div><p>剩下的太简单，懒得写了，就到这。</p>
+<h4 id=return处理>return处理</h4>
+<p>async函数的return结果，会被包装成一个Promise再返回出去。
+那么需要做的就是：</p>
+<ul>
+<li>返回一个 <code>new Promise((resolve, reject) => { })</code></li>
+<li>在<code>it.done</code>为<code>true</code>时，执行<code>reslove(it.value)</code>，结束运行</li>
+<li><del>在执行代码过程中出现错误时 或 Promise被catch捕获，执行<code>reject(err)</code>或<code>it.throw(err)</code>，结束运行</del>（待考证，先睡觉）</li>
+</ul>
 </div>
 <div class="row middle-xs">
 <div class=col-xs-12>
