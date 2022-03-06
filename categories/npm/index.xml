@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>npm on Study Notes</title><link>https://notes.vaakian.com/categories/npm/</link><description>Recent content in npm on Study Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 25 Jan 2022 17:37:56 +0800</lastBuildDate><atom:link href="https://notes.vaakian.com/categories/npm/index.xml" rel="self" type="application/rss+xml"/><item><title>Publish Ts Package</title><link>https://notes.vaakian.com/frontend/publish-ts-package/</link><pubDate>Tue, 25 Jan 2022 17:37:56 +0800</pubDate><guid>https://notes.vaakian.com/frontend/publish-ts-package/</guid><description> 草稿
+由publish最近写的XPeer包引发的一系列新问题，记录学习所得。
+XPeer是用TypeScript来写的，可以正常publish到npm上，但只能被ts项目所引用，而且需要反复编译，会浪费不少资源。
+The 30-second guide to publishing a TypeScript package to NPM
+预编译 tsc project 仅仅是将ts编译出原生js，前端项目能够直接import，不管是js还是ts项目。但不能通过浏览器&amp;lt;script&amp;gt;标签来引入。
+browserify browserify能够对js进行bundle操作，让浏览器能够直接引入。至于什么是bundle？ tinify是browserify的压缩package，可以让bundle瘦身。 browserify-global-shim让某个包可以在windiw对象上全局访问。
+配置 publish流程 npm init 配置package.json &amp;ldquo;main&amp;rdquo;: &amp;ldquo;lib/index.js&amp;rdquo;,即import的默认入口 &amp;ldquo;types&amp;rdquo;: &amp;ldquo;lib/index.d.ts&amp;rdquo;, 待考察 &amp;ldquo;exclude&amp;rdquo; &amp;ldquo;include&amp;rdquo; &amp;ldquo;declaration&amp;rdquo; 如何管理d.ts文件和types属性，让引包用户能够正常拿到type？
+npm login
+npm publish
+使用 npm i -s xpeer
+import { XPeer } from &amp;#39;xpeer&amp;#39; 总结</description></item></channel></rss>
