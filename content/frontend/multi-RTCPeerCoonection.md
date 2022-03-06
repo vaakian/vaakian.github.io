@@ -2,7 +2,7 @@
 title: "WebRTC: Multi-RTCPeerCoonection"
 date: 2022-01-21T16:24:57+08:00
 draft: false
-categories: ["frontend", "WebRTC"]
+categories: ["Frontend", "WebRTC"]
 ---
 
 ## 一）抛出问题

@@ -1,7 +1,8 @@
 ---
 title: "Publish Ts Package"
 date: 2022-01-25T17:37:56+08:00
-draft: true
+draft: false
+categories: ["npm"]
 ---
 
 由publish最近写的`XPeer`包引发的一系列新问题，记录学习所得。
