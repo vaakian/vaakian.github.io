@@ -100,4 +100,14 @@ doAsync(main)
 
 如果promise是被reject捕获，则直接抛出一个错误。
 
-太简单，懒得写了，就到这。
+怎么抛？
+
+生成器函数(异步函数)返回值为it，那么就用`it.throw(e)`抛。
+
+```js
+const promise = Promise.resolve(value)
+promise
+  .then(v => iterate(v))
+  .catch(err => it.throw(err))
+```
+剩下的太简单，懒得写了，就到这。
