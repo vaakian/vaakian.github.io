@@ -111,3 +111,13 @@ promise
   .catch(err => it.throw(err))
 ```
 剩下的太简单，懒得写了，就到这。
+
+
+#### return处理
+
+async函数的return结果，会被包装成一个Promise再返回出去。
+那么需要做的就是：
+
+- 返回一个 `new Promise((resolve, reject) => { })`
+- 在`it.done`为`true`时，执行`reslove(it.value)`，结束运行
+- ~~在执行代码过程中出现错误时 或 Promise被catch捕获，执行`reject(err)`或`it.throw(err)`，结束运行~~（待考证，先睡觉）
