@@ -141,7 +141,13 @@ function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return 
 <p><img src=/images/20220306-1.png alt=rest></p>
 <h4 id=错误处理>错误处理</h4>
 <p>如果promise是被reject捕获，则直接抛出一个错误。</p>
-<p>太简单，懒得写了，就到这。</p>
+<p>怎么抛？</p>
+<p>生成器函数(异步函数)返回值为it，那么就用<code>it.throw(e)</code>抛。</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#204a87;font-weight:700>const</span> <span style=color:#000>promise</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87>Promise</span><span style=color:#000;font-weight:700>.</span><span style=color:#000>resolve</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>value</span><span style=color:#000;font-weight:700>)</span>
+<span style=color:#000>promise</span>
+  <span style=color:#000;font-weight:700>.</span><span style=color:#000>then</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>v</span> <span style=color:#000;font-weight:700>=&gt;</span> <span style=color:#000>iterate</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>v</span><span style=color:#000;font-weight:700>))</span>
+  <span style=color:#000;font-weight:700>.</span><span style=color:#204a87;font-weight:700>catch</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>err</span> <span style=color:#000;font-weight:700>=&gt;</span> <span style=color:#000>it</span><span style=color:#000;font-weight:700>.</span><span style=color:#204a87;font-weight:700>throw</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>err</span><span style=color:#000;font-weight:700>))</span>
+</code></pre></div><p>剩下的太简单，懒得写了，就到这。</p>
 </div>
 <div class="row middle-xs">
 <div class=col-xs-12>
