@@ -4,6 +4,9 @@ date: 2021-12-14T15:55:03+08:00
 draft: false
 categories: ["React", "Frontend"]
 ---
+
+> ⚠️注：从老博客迁移，可能有排版问题。
+
 尝试用浏览器API封装一个读取摄像头视频流的useCamera自定义hooks，一步一步优化，总结一下得到目前为止的最佳实践。
 首先，摄像头读取API需要传入最基本的参数[constraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#parameters)，通过promise方式得到stream后会展示到video标签上，那么`useCamera`应该接受一个能够读取到video标签的参数，那么首选ref，得到如下第一版代码：
 
