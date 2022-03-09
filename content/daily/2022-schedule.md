@@ -8,7 +8,8 @@ categories: ["Goal"]
 
 ### 1️⃣ 继续维护[XPeer](https://github.com/vaakian/XPeer/)
 
-自己的小玩具，基于原生`WebRTC`封装的多人点对点连接`package`，但能够从中学到非常多综合性的东西。
+自己的小玩具，但能够从中学到非常多综合性的东西。\
+基于原生`WebRTC`封装，支持多人点对点连接。
 - [ ] 如何创建/发布/维护一个[NPM](https://www.npmjs.com/)项目
 - [ ] 如何更好的管理`TypeScript`项目
 - [ ] 发布到NPM前置工作：选择性编译成js，但保留`d.ts`文件，即给开发者保留`TS`智能提示特性。
@@ -41,4 +42,4 @@ categories: ["Goal"]
 
 
 
-![](/images/2022-03-09-23-04-59.png)
+![](/images/2022-03-09-23-20-42.jpeg)
