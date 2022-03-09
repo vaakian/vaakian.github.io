@@ -1,14 +1,14 @@
 ---
-title: "implement async/await with generator/yield"
+title: "Implement async/await with generator/yield"
 date: 2022-03-06T14:11:03+08:00
 draft: false
 categories: ["Frontend", "JavaScript"]
 ---
 
-`async/await`不是魔法，它只是一个语法糖，底层与生成器generator密不可分。
+`async/await`不是魔法，它只是一个语法糖，底层与生成器`generator`密不可分。
 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。
 
-需要前置知识，这里不再解释：
+需要的前置知识，不再赘述：
 - [ES6 async/await](https://www.google.com/search?q=es6+async%2Fawait)
 - [ES6 generator](https://www.google.com/search?q=es6+generator)
 
@@ -118,6 +118,6 @@ promise
 async函数的return结果，会被包装成一个Promise再返回出去。
 那么需要做的就是：
 
-- 返回一个 `new Promise((resolve, reject) => { })`
-- 在`it.done`为`true`时，执行`reslove(it.value)`，结束运行
-- ~~在执行代码过程中出现错误时 或 Promise被catch捕获，执行`reject(err)`或`it.throw(err)`，结束运行~~（待考证，先睡觉）
+- 返回一个 `new Promise((resolve, reject) => { })`；
+- 在`it.done`为`true`时，执行`reslove(it.value)`，`结束运行`；
+- 在执行代码过程中出现错误时 或 Promise被catch捕获，执行`reject(err)`或`it.throw(err)`，`结束运行`。
