@@ -7,16 +7,16 @@
 <meta name=author content="VAANOTE">
 <meta property="og:url" content="https://notes.vaakian.com/frontend/async-generator/">
 <link rel=canonical href=https://notes.vaakian.com/frontend/async-generator/><link rel=alternate type=application/atom+xml href=https://notes.vaakian.com/index.xml title="Study Notes">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/notes.vaakian.com\/"},"articleSection":"frontend","name":"implement async\/await with generator\/yield","headline":"implement async\/await with generator\/yield","description":"async\/await不是魔法，它只是一个语法糖，底层与生成器generator密不可分。 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。\n需要前置知识，这里不再解释：\n ES6 async\/await ES6 generator  创建一个异步加法函数 延迟1秒返回加法结果，方便实验。\nfunction addAsync(x: number, y: number): Promise\u0026lt;number\u0026gt; { return new Promise((resolve, reject) =\u0026gt; { setTimeout(() =\u0026gt; { resolve(x \u002b y) }, 1000) }) } 实现单个yield（模拟await） function doAsync(g: () =\u0026gt; Generator): void { \/\/ 调用异步函数main，返回一个可迭代的iterator  const it = g() \/\/ 调用next，运行到第一个yield之后暂停  const { value } = it.next() \/\/ 调用next则让yield之后的代码继续运行，并将v传递给yield作为返回值  value.then(v =\u0026gt; it.next(v)) } function* main() { const result: number = yield addAsync(5, 2) console.","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-03-06 14:11:03 \u002b0800 \u002b0800","dateModified":"2022-03-06 14:11:03 \u002b0800 \u002b0800","url":"https:\/\/notes.vaakian.com\/frontend\/async-generator\/","keywords":[]}</script>
-<title>implement async/await with generator/yield</title>
-<meta property="og:title" content="implement async/await with generator/yield">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/notes.vaakian.com\/"},"articleSection":"frontend","name":"Implement async\/await with generator\/yield","headline":"Implement async\/await with generator\/yield","description":"async\/await不是魔法，它只是一个语法糖，底层与生成器generator密不可分。 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。\n需要的前置知识，不再赘述：\n ES6 async\/await ES6 generator  创建一个异步加法函数 延迟1秒返回加法结果，方便实验。\nfunction addAsync(x: number, y: number): Promise\u0026lt;number\u0026gt; { return new Promise((resolve, reject) =\u0026gt; { setTimeout(() =\u0026gt; { resolve(x \u002b y) }, 1000) }) } 实现单个yield（模拟await） function doAsync(g: () =\u0026gt; Generator): void { \/\/ 调用异步函数main，返回一个可迭代的iterator  const it = g() \/\/ 调用next，运行到第一个yield之后暂停  const { value } = it.next() \/\/ 调用next则让yield之后的代码继续运行，并将v传递给yield作为返回值  value.then(v =\u0026gt; it.next(v)) } function* main() { const result: number = yield addAsync(5, 2) console.","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-03-06 14:11:03 \u002b0800 \u002b0800","dateModified":"2022-03-06 14:11:03 \u002b0800 \u002b0800","url":"https:\/\/notes.vaakian.com\/frontend\/async-generator\/","keywords":[]}</script>
+<title>Implement async/await with generator/yield</title>
+<meta property="og:title" content="Implement async/await with generator/yield">
 <meta property="og:type" content="article">
 <meta property="og:description" content="async/await不是魔法，它只是一个语法糖，底层与生成器generator密不可分。 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。
-需要前置知识，这里不再解释：
+需要的前置知识，不再赘述：
  ES6 async/await ES6 generator  创建一个异步加法函数 延迟1秒返回加法结果，方便实验。
 function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { setTimeout(() =&amp;gt; { resolve(x + y) }, 1000) }) } 实现单个yield（模拟await） function doAsync(g: () =&amp;gt; Generator): void { // 调用异步函数main，返回一个可迭代的iterator  const it = g() // 调用next，运行到第一个yield之后暂停  const { value } = it.next() // 调用next则让yield之后的代码继续运行，并将v传递给yield作为返回值  value.then(v =&amp;gt; it.next(v)) } function* main() { const result: number = yield addAsync(5, 2) console.">
 <meta name=description content="async/await不是魔法，它只是一个语法糖，底层与生成器generator密不可分。 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。
-需要前置知识，这里不再解释：
+需要的前置知识，不再赘述：
  ES6 async/await ES6 generator  创建一个异步加法函数 延迟1秒返回加法结果，方便实验。
 function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { setTimeout(() =&amp;gt; { resolve(x + y) }, 1000) }) } 实现单个yield（模拟await） function doAsync(g: () =&amp;gt; Generator): void { // 调用异步函数main，返回一个可迭代的iterator  const it = g() // 调用next，运行到第一个yield之后暂停  const { value } = it.next() // 调用next则让yield之后的代码继续运行，并将v传递给yield作为返回值  value.then(v =&amp;gt; it.next(v)) } function* main() { const result: number = yield addAsync(5, 2) console.">
 <meta property="og:locale" content="en-us">
@@ -50,7 +50,7 @@ function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return 
 <div class=header-line></div>
 </div>
 <header class=post-header>
-<h1 class=post-title>implement async/await with generator/yield</h1>
+<h1 class=post-title>Implement async/await with generator/yield</h1>
 <div class="row post-desc">
 <div class=col-xs-6>
 <time class=post-date datetime="2022-03-06 14:11:03 +0800">
@@ -65,9 +65,9 @@ function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return 
 </div>
 </header>
 <div class="post-content markdown-body">
-<p><code>async/await</code>不是魔法，它只是一个语法糖，底层与生成器generator密不可分。
+<p><code>async/await</code>不是魔法，它只是一个语法糖，底层与生成器<code>generator</code>密不可分。
 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。</p>
-<p>需要前置知识，这里不再解释：</p>
+<p>需要的前置知识，不再赘述：</p>
 <ul>
 <li><a href="https://www.google.com/search?q=es6+async%2Fawait">ES6 async/await</a></li>
 <li><a href="https://www.google.com/search?q=es6+generator">ES6 generator</a></li>
@@ -152,9 +152,9 @@ function addAsync(x: number, y: number): Promise&amp;lt;number&amp;gt; { return 
 <p>async函数的return结果，会被包装成一个Promise再返回出去。
 那么需要做的就是：</p>
 <ul>
-<li>返回一个 <code>new Promise((resolve, reject) => { })</code></li>
-<li>在<code>it.done</code>为<code>true</code>时，执行<code>reslove(it.value)</code>，结束运行</li>
-<li><del>在执行代码过程中出现错误时 或 Promise被catch捕获，执行<code>reject(err)</code>或<code>it.throw(err)</code>，结束运行</del>（待考证，先睡觉）</li>
+<li>返回一个 <code>new Promise((resolve, reject) => { })</code>；</li>
+<li>在<code>it.done</code>为<code>true</code>时，执行<code>reslove(it.value)</code>，<code>结束运行</code>；</li>
+<li>在执行代码过程中出现错误时 或 Promise被catch捕获，执行<code>reject(err)</code>或<code>it.throw(err)</code>，<code>结束运行</code>。</li>
 </ul>
 </div>
 <div class="row middle-xs">
