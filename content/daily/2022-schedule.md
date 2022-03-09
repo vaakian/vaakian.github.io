@@ -1,8 +1,8 @@
 ---
 title: "2022年计划"
 date: 2022-03-09T22:40:25+08:00
-draft: draft
-categories: ["Schedule"]
+draft: false
+categories: ["Goal"]
 ---
 
 
