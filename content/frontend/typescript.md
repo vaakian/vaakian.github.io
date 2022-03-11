@@ -1,7 +1,7 @@
 ---
 title: "Typescript"
 date: 2022-01-21T21:15:58+08:00
-draft: flase
+draft: false
 categories: ["TypeScript"]
 ---
 
