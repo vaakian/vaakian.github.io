@@ -1,6 +1,6 @@
 # https://github.com/joway/hugo-blog
 # blog.joway.io/
-baseURL = "https://notes.vaakian.com/"
+baseURL = "https://note.vaakian.com/"
 languageCode = "en-us"
 title = "Study Notes"
 theme = "yinyang"

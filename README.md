@@ -1,3 +1,3 @@
-# 学习笔记
+# study notes
 
-build with Hugo+markdown & deployed on [](https://notes.vaakian.com)
+built with Hugo+markdown & deployed at [daily-notes](https://notes.vaakian.com)
