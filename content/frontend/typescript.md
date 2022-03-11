@@ -97,3 +97,32 @@ add('bar', (event) => {
 ~~其中T作为泛型，并声明T一定有keyof eventMap当中的属性，当然也可以有其他属性。~~
 
 > **Extends**除了继承，到底能干些什么？如何用？
+
+
+### 模板字面量类型：Template Literal Types
+
+```javascript
+type Animals = 'dog' | 'cat' | 'bird'
+
+type Food = 'meat' | 'vegetable' | 'fruit'
+
+type AnimalsEats = `${Animals} eats ${Food}`
+```
+结果，类型约束为两个类型的组合。
+![](/images/2022-03-11-13-53-57.png)
+
+
+### 增强原型： Extends prototype
+需要通过`interface`来声明新的属性或方法，直接添加会报错。
+> interface可以重复声明，会被合并（Merging）。在`TypeScript`中叫做[declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)。
+```typescript
+interface Array<T> {
+  mapAsync<U>(callbackfn: (value: any, index: number, array: any[]) => Promise<U>, thisArg?: any): Promise<U[]>
+}
+
+// 如果不重新声明Array的interface，则会报错，因为Array的interface中没有mapAsync方法。
+Array.prototype.mapAsync = function <U>(callbackfn: (value: any, index: number, array: any[]) => Promise<U>, thisArg?: any): Promise<U[]> {
+  const promises = this.map(callbackfn.bind(thisArg || this))
+  return Promise.all(promises)
+}
+```
