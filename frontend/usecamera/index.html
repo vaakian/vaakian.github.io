@@ -180,7 +180,12 @@ function useCamera(constraints, videoRef) { const storedStream = useRef(null) //
 <span style=color:#000;font-weight:700>}</span>
 </code></pre></div><h3 id=使用hooks时记住一句话>使用hooks时记住一句话</h3>
 <blockquote>
-<p>先导致rerender，才会有新的compare，从而出现一系列effect。</p>
+<p>通过setState => 导致rerender(调用组件函数)，才会有新的compare(dependencies)，从而出现一系列effect。（最后产生vDom，再进行diff，更新到真实dom）</p>
+</blockquote>
+<p>而在<code>Vue</code>中，<code>dependencies</code>是在状态的<code>getter</code>中自动收集的，所以<code>compare</code>是隐式的或者说根本不存在。<br>
+即大概流程为：</p>
+<blockquote>
+<p>setter => watcher(s) => vDom => diff => update to real dom.</p>
 </blockquote>
 </div>
 <div class="row middle-xs">
