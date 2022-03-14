@@ -143,4 +143,8 @@ function useCamera(constraints) {
 
 ### 使用hooks时记住一句话
 
-> 先导致rerender，才会有新的compare，从而出现一系列effect。
+> 通过setState => 导致rerender(调用组件函数)，才会有新的compare(dependencies)，从而出现一系列effect。（最后产生vDom，再进行diff，更新到真实dom）
+
+而在`Vue`中，`dependencies`是在状态的`getter`中自动收集的，所以`compare`是隐式的或者说根本不存在。\
+即大概流程为：
+> setter => watcher(s) => vDom => diff => update to real dom.
