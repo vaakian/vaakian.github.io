@@ -36,7 +36,19 @@ categories: ["Goal"]
 - Google
 - Youtube
 
-### 4️⃣ 攒钱
+### 4️⃣ 保持算法手感
+
+前端虽然不如后端岗位那么重算法，但是一些比较常见的算法，还需有必要去掌握的。\
+对于前端，「树」是最重要的数据结构，所以刷算法最好偏向关于树的题。\
+要求不多，一个月只需要慢慢吃透5题，吃透！
+
+资料：
+
+- [Youtube-leetCode](https://www.youtube.com/results?search_query=leetcode)
+- [leetCode(外区)](https://leetcode.com/)
+- [Data Structure](https://www.growingwiththeweb.com/p/explore.html?t=Data%20structure)
+
+### 5️⃣ 攒钱
 
 `💰` => `🗽` => `WLB`
 
