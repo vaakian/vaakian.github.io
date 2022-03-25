@@ -185,7 +185,7 @@
 <h5 id=3-处理answer>3> 处理answer</h5>
 <h5 id=4-处理icecandidate>4> 处理icecandidate</h5>
 <h3 id=22-什么是track>2.2 什么是track</h3>
-<p>track英文<code>/træk/</code>译为<code>轨道</code>，是一个<a href=https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack>MediaStreamTrack</a>的实例。在WebRTC中，Track同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的WebRTC版本PeerConnection通过AddStream()方法添加Stream，而不是track。后来的版本，PeerConnection通过addTrack()方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该track。接收者可以单独接收音频轨道和单独接收视频轨道。而AddStream()的方式不能够选择性的接收。</p>
+<p>track英文<code>/træk/</code>译为<code>轨道</code>，是一个<a href=https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack>MediaStreamTrack</a>的实例。在<code>WebRTC</code>中，<code>Track</code>同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的<code>WebRTC</code>版本<code>PeerConnection</code>通过<code>AddStream()</code>方法添加Stream，而不是<code>track</code>。后来的版本，<code>PeerConnection</code>通过<code>addTrack()</code>方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该<code>track</code>。接收者可以单独接收音频轨道和单独接收视频轨道。而<code>AddStream()</code>的方式不能够选择性的接收（不过也可以通过getTracks()遍历选择)。</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#204a87;font-weight:700>const</span> <span style=color:#000>remoteStream</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>MediaStream</span><span style=color:#000;font-weight:700>()</span>
 <span style=color:#000>pc</span><span style=color:#000;font-weight:700>.</span><span style=color:#000>addEventListener</span><span style=color:#000;font-weight:700>(</span><span style=color:#4e9a06>&#39;track&#39;</span><span style=color:#000;font-weight:700>,</span> <span style=color:#000;font-weight:700>(</span><span style=color:#000>event</span><span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>=&gt;</span> <span style=color:#000;font-weight:700>{</span>
   <span style=color:#8f5902;font-style:italic>// 选择性接受
@@ -197,7 +197,7 @@
 </span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#8f5902;font-style:italic>// remoteStream.addTrack(event.track)
 </span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000;font-weight:700>}</span>  
 <span style=color:#000;font-weight:700>})</span>
-</code></pre></div><p>实现禁音，视频暂停，都可以使用MediaStreamTrack.enabled属性来实现。己方将某个<code>track.enable = false</code>，其他接收该track的客户端会得到<code>muted</code>为<code>false</code>，这个过程全部由track内部进行，不需要再进行编码通知。</p>
+</code></pre></div><p>实现禁音，视频暂停，都可以使用<code>MediaStreamTrack.enabled</code>属性来实现。己方将某个<code>track.enable = false</code>，其他接收该<code>track</code>的客户端会得到<code>muted</code>为<code>false</code>，这个过程全部由<code>track</code>内部进行，不需要再进行编码通知。</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-ts data-lang=ts>
 <span style=color:#204a87;font-weight:700>function</span> <span style=color:#000>onMute</span><span style=color:#000;font-weight:700>(</span><span style=color:#000>event</span>: <span style=color:#204a87;font-weight:700>MediaStreamTrackEvent</span><span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>{</span>
     <span style=color:#8f5902;font-style:italic>// enabled: false, no media data provision
