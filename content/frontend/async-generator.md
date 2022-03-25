@@ -14,7 +14,7 @@ categories: ["Frontend", "JavaScript"]
 
 ### 创建一个异步加法函数
 延迟1秒返回加法结果，方便实验。
-```js
+```ts
 function addAsync(x: number, y: number): Promise<number> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -24,7 +24,7 @@ function addAsync(x: number, y: number): Promise<number> {
 }
 ```
 ### 实现单个yield（模拟await）
-```js
+```ts
 function doAsync(g: () => Generator): void {
   // 调用异步函数main，返回一个可迭代的iterator
   const it = g()
@@ -46,7 +46,7 @@ doAsync(main)
 #### 异步函数执行器
 简单的递归行为，结束一个promise之后，再允许生成器`g`继续执行，直到所有的`yield`执行完毕，即`done`为真时结束运行。
 此处对value（为yield后面表达式的值）需要进行判断，可能是一个promise，也可能直接就是一个字面量值。
-```js
+```ts
 function doAsync(g: () => Generator): void {
   const it = g()
 
@@ -79,7 +79,7 @@ function doAsync(g: () => Generator): void {
 记住，await后面不一定是异步行为，可能是一个字面量，可能是一个同步任务。所以`doAsync`要做处理。
 
 以下异步相当于 `async` 替换为 `*`，await替换为 `yield`。
-```js
+```ts
 function* main() {
   const result1: number = yield 123
   console.log(result1)
@@ -104,7 +104,7 @@ doAsync(main)
 
 生成器函数(异步函数)返回值为it，那么就用`it.throw(e)`抛。
 
-```js
+```ts
 const promise = Promise.resolve(value)
 promise
   .then(v => iterate(v))

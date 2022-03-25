@@ -144,7 +144,7 @@ type Message = {
 
 ### 2.2 什么是track
 
-track英文`/træk/`译为`轨道`，是一个[MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack)的实例。在WebRTC中，Track同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的WebRTC版本PeerConnection通过AddStream()方法添加Stream，而不是track。后来的版本，PeerConnection通过addTrack()方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该track。接收者可以单独接收音频轨道和单独接收视频轨道。而AddStream()的方式不能够选择性的接收。
+track英文`/træk/`译为`轨道`，是一个[MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack)的实例。在`WebRTC`中，`Track`同样是一个轨道，可以是音频轨道，也可以是视频轨道。早期的`WebRTC`版本`PeerConnection`通过`AddStream()`方法添加Stream，而不是`track`。后来的版本，`PeerConnection`通过`addTrack()`方法来传递音视频轨道，这样做的好处就是，接收者可以通过track.kind来判断是音频轨道还是视频轨道，然后选择是否接收该`track`。接收者可以单独接收音频轨道和单独接收视频轨道。而`AddStream()`的方式不能够选择性的接收（不过也可以通过getTracks()遍历选择)。
 ```js
 const remoteStream = new MediaStream()
 pc.addEventListener('track', (event) => {
@@ -159,7 +159,7 @@ pc.addEventListener('track', (event) => {
 })
 ```
 
-实现禁音，视频暂停，都可以使用MediaStreamTrack.enabled属性来实现。己方将某个`track.enable = false`，其他接收该track的客户端会得到`muted`为`false`，这个过程全部由track内部进行，不需要再进行编码通知。
+实现禁音，视频暂停，都可以使用`MediaStreamTrack.enabled`属性来实现。己方将某个`track.enable = false`，其他接收该`track`的客户端会得到`muted`为`false`，这个过程全部由`track`内部进行，不需要再进行编码通知。
 
 ```ts
 
