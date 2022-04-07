@@ -7,9 +7,9 @@
 <meta name=author content="VAANOTE">
 <meta property="og:url" content="https://note.vaakian.com/frontend/typescript/">
 <link rel=canonical href=https://note.vaakian.com/frontend/typescript/><link rel=alternate type=application/atom+xml href=https://note.vaakian.com/index.xml title="Study Notes">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"Typescript","headline":"Typescript","description":"动态属性 对象动态属性 即某个对象的属性类型 依赖于 另外一个属性，当Message的type为offer时，payload的属性为RTCSessionDescriptionInit，而不是一个联合类型PeerInfo | RTCSessionDescriptionInit | RTCIceCandidateInit。\ninterface PeerInfo { id: string nick: string } interface PayloadMap { join: PeerInfo offer: RTCSessionDescriptionInit answer: RTCSessionDescriptionInit icecandidate: RTCIceCandidateInit \/\/ leave只有单接受情况，客户端不会主动发送。  leave: PeerInfo } type Message = { [K in keyof PayloadMap]: { type: K nick: string receiverId?: string | null \/\/ playload的类型取决于type的值  payload: PayloadMap[K] } }[keyof PayloadMap] 单拎出来这一段，其实是map出了多个类型，一个key对应一个类型。然后Message通过keyof PayloadMap来获取到一个联合类型。\nconst MessageTypeMap = { [K in keyof PayloadMap]: { type: K nick: string id: string receiverId?","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-01-21 21:15:58 \u002b0800 \u002b0800","dateModified":"2022-01-21 21:15:58 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/typescript\/","keywords":[]}</script>
-<title>Typescript</title>
-<meta property="og:title" content="Typescript">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"TypeScript","headline":"TypeScript","description":"动态属性 对象动态属性 即某个对象的属性类型 依赖于 另外一个属性，当Message的type为offer时，payload的属性为RTCSessionDescriptionInit，而不是一个联合类型PeerInfo | RTCSessionDescriptionInit | RTCIceCandidateInit。\ninterface PeerInfo { id: string nick: string } interface PayloadMap { join: PeerInfo offer: RTCSessionDescriptionInit answer: RTCSessionDescriptionInit icecandidate: RTCIceCandidateInit \/\/ leave只有单接受情况，客户端不会主动发送。  leave: PeerInfo } type Message = { [K in keyof PayloadMap]: { type: K nick: string receiverId?: string | null \/\/ playload的类型取决于type的值  payload: PayloadMap[K] } }[keyof PayloadMap] 单拎出来这一段，其实是map出了多个类型，一个key对应一个类型。然后Message通过keyof PayloadMap来获取到一个联合类型。\nconst MessageTypeMap = { [K in keyof PayloadMap]: { type: K nick: string id: string receiverId?","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-01-21 21:15:58 \u002b0800 \u002b0800","dateModified":"2022-01-21 21:15:58 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/typescript\/","keywords":[]}</script>
+<title>TypeScript</title>
+<meta property="og:title" content="TypeScript">
 <meta property="og:type" content="article">
 <meta property="og:description" content="动态属性 对象动态属性 即某个对象的属性类型 依赖于 另外一个属性，当Message的type为offer时，payload的属性为RTCSessionDescriptionInit，而不是一个联合类型PeerInfo | RTCSessionDescriptionInit | RTCIceCandidateInit。
 interface PeerInfo { id: string nick: string } interface PayloadMap { join: PeerInfo offer: RTCSessionDescriptionInit answer: RTCSessionDescriptionInit icecandidate: RTCIceCandidateInit // leave只有单接受情况，客户端不会主动发送。  leave: PeerInfo } type Message = { [K in keyof PayloadMap]: { type: K nick: string receiverId?: string | null // playload的类型取决于type的值  payload: PayloadMap[K] } }[keyof PayloadMap] 单拎出来这一段，其实是map出了多个类型，一个key对应一个类型。然后Message通过keyof PayloadMap来获取到一个联合类型。
@@ -48,7 +48,7 @@ const MessageTypeMap = { [K in keyof PayloadMap]: { type: K nick: string id: str
 <div class=header-line></div>
 </div>
 <header class=post-header>
-<h1 class=post-title>Typescript</h1>
+<h1 class=post-title>TypeScript</h1>
 <div class="row post-desc">
 <div class=col-xs-6>
 <time class=post-date datetime="2022-01-21 21:15:58 +0800">
@@ -142,7 +142,8 @@ const MessageTypeMap = { [K in keyof PayloadMap]: { type: K nick: string id: str
 </span><span style=color:#8f5902;font-style:italic></span><span style=color:#000;font-weight:700>})</span>
 </code></pre></div><p><del>其中T作为泛型，并声明T一定有keyof eventMap当中的属性，当然也可以有其他属性。</del></p>
 <blockquote>
-<p><strong>Extends</strong>除了继承，到底能干些什么？如何用？</p>
+<p><strong>Extends</strong>除了继承，到底能干些什么？如何用？<br>
+：在Interface和class中为继承，在其它类型定义中为T is assignable U，即T是否可以赋给U。</p>
 </blockquote>
 <h3 id=模板字面量类型template-literal-types>模板字面量类型：Template Literal Types</h3>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-javascript data-lang=javascript><span style=color:#000>type</span> <span style=color:#000>Animals</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#4e9a06>&#39;dog&#39;</span> <span style=color:#ce5c00;font-weight:700>|</span> <span style=color:#4e9a06>&#39;cat&#39;</span> <span style=color:#ce5c00;font-weight:700>|</span> <span style=color:#4e9a06>&#39;bird&#39;</span>
