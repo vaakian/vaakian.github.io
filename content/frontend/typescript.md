@@ -1,5 +1,5 @@
 ---
-title: "Typescript"
+title: "TypeScript"
 date: 2022-01-21T21:15:58+08:00
 draft: false
 categories: ["TypeScript"]
