@@ -96,7 +96,8 @@ add('bar', (event) => {
 ```
 ~~其中T作为泛型，并声明T一定有keyof eventMap当中的属性，当然也可以有其他属性。~~
 
-> **Extends**除了继承，到底能干些什么？如何用？
+> **Extends**除了继承，到底能干些什么？如何用？\
+> ：在Interface和class中为继承，在其它类型定义中为T is assignable U，即T是否可以赋给U。
 
 
 ### 模板字面量类型：Template Literal Types
