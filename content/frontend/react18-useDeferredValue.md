@@ -33,7 +33,7 @@ const SlowComponent = React.memo(({ text }) => {
   return <div>{text}</div>
 })
 ```
-在线测试，改变1次输入框，输入框需要在`500ms`后响应。
+在线测试，改变1次输入框，输入框需要在`500ms`后响应。\
 https://codesandbox.io/s/goofy-khayyam-3q410q?file=/src/App.js
 
 那么可不可以先立刻渲染出`input`，再去渲染`SlowComponent`呢？\
