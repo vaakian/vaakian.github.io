@@ -133,7 +133,8 @@ function App() {
 甚至，在`react18`渲染过程中可以检测到是否渲染完成，未完成时并不会阻塞其它的渲染进程，所以在处理渲染之前，我们可以在页面显示`pending`状态。
 网友的例子：
 - https://codepen.io/arjunaskykok/pen/xxrvNMN?editors=0110
-
+官方的例子：
+- https://17.reactjs.org/docs/concurrent-mode-reference.html#usetransition
 ### hook: useSyncExternalStore
 那么，如何解决这种视觉不一致的问题？所以`react18`也同时提供了一个新的hook：\
 `useSyncExternalStore`
