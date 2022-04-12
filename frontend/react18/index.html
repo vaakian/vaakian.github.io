@@ -187,7 +187,9 @@ import { useState, useCallback, useEffect, useRef, startTransition } from &amp;#
 <p>甚至，在<code>react18</code>渲染过程中可以检测到是否渲染完成，未完成时并不会阻塞其它的渲染进程，所以在处理渲染之前，我们可以在页面显示<code>pending</code>状态。
 网友的例子：</p>
 <ul>
-<li><a href="https://codepen.io/arjunaskykok/pen/xxrvNMN?editors=0110">https://codepen.io/arjunaskykok/pen/xxrvNMN?editors=0110</a></li>
+<li><a href="https://codepen.io/arjunaskykok/pen/xxrvNMN?editors=0110">https://codepen.io/arjunaskykok/pen/xxrvNMN?editors=0110</a>
+官方的例子：</li>
+<li><a href=https://17.reactjs.org/docs/concurrent-mode-reference.html#usetransition>https://17.reactjs.org/docs/concurrent-mode-reference.html#usetransition</a></li>
 </ul>
 <h3 id=hook-usesyncexternalstore>hook: useSyncExternalStore</h3>
 <p>那么，如何解决这种视觉不一致的问题？所以<code>react18</code>也同时提供了一个新的hook：<br>
