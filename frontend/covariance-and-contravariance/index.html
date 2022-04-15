@@ -94,6 +94,18 @@ type ConsumeAnimal = (target: Animal) =&amp;gt; Animal type ConsumeDog = (target
 <span style=color:#204a87;font-weight:700>type</span> <span style=color:#000>R3</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>Assignable</span><span style=color:#000;font-weight:700>&lt;</span><span style=color:#204a87;font-weight:700>Parameters</span><span style=color:#a40000>&lt;</span><span style=color:#c4a000>Son</span><span style=color:#000;font-weight:700>&gt;,</span> <span style=color:#000>Parameters</span><span style=color:#000;font-weight:700>&lt;</span><span style=color:#204a87;font-weight:700>Father</span><span style=color:#000;font-weight:700>&gt;</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#8f5902;font-style:italic>// true
 </span></code></pre></div><h2 id=问题出在哪里>问题出在哪里？</h2>
 <p>通过Google，找到两个关键词：<code>covariance</code>和<code>contravariance</code></p>
+<ol>
+<li>什么是covariance？</li>
+</ol>
+<blockquote>
+<p>Covariance accept <code>subtype</code> but doesn&rsquo;t accept <code>supertype</code></p>
+</blockquote>
+<ol start=2>
+<li>什么是contravariance？</li>
+</ol>
+<blockquote>
+<p>Contravariance accept <code>supertype</code> but doesn&rsquo;t accept <code>subtype</code></p>
+</blockquote>
 <p><img src=images/20220415135421.png alt></p>
 <h3 id=contravariance>contravariance</h3>
 <p>将函数<code>ConsumeAnimal</code>看作为<code>Consumer</code>，它消费一个类<code>Animal</code>，保证参数<code>target: Animal</code>存在Animal的所有属性和方法，该函数绝对访问不会超过<code>Animal</code>之外的属性。
