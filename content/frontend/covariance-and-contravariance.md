@@ -46,11 +46,12 @@ type R3 = Assignable<Parameters<Son>, Parameters<Father>> // true
 
 1. 什么是covariance？
 
-> Covariance accept `subtype` but doesn't accept `supertype`
+Covariance accept `subtype` but doesn't accept `supertype`
+> animal = dog, animal 可以接受一个子类 dog.
 
 2. 什么是contravariance？
 
-> Contravariance accept `supertype` but doesn't accept `subtype`
+Contravariance accept `supertype` but doesn't accept `subtype`
 
 ![](images/20220415135421.png) 
 
