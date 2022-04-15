@@ -7,9 +7,9 @@
 <meta name=author content="VAANOTE">
 <meta property="og:url" content="https://note.vaakian.com/frontend/react18/">
 <link rel=canonical href=https://note.vaakian.com/frontend/react18/><link rel=alternate type=application/atom+xml href=https://note.vaakian.com/index.xml title="Study Notes">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"React18 updates","headline":"React18 updates","description":"React18更新了什么？ 最大的更新就是并发渲染(concurrent rendering)特性了。这里将同步渲染和并发渲染进行对比，以及了解和测试它所影响的视觉行为。\n其次，使用react18，渲染方式有小的变动如下：\nbefore\nimport React from \u0026#39;react\u0026#39; import ReactDOM from \u0026#39;react-dom\u0026#39; import \u0026#39;.\/index.css\u0026#39; import App from \u0026#39;.\/App\u0026#39; ReactDOM.render( \u0026lt;React.StrictMode\u0026gt; \u0026lt;App \/\u0026gt; \u0026lt;\/React.StrictMode\u0026gt;, document.getElementById(\u0026#39;root\u0026#39;) ) after\nimport { React } from \u0026#39;react\u0026#39; import { createRoot } from \u0026#39;react-dom\/client\u0026#39; import \u0026#39;.\/index.css\u0026#39; import App from \u0026#39;.\/App\u0026#39; const root = createRoot(document.getElementById(\u0026#39;root\u0026#39;)) root.render(\u0026lt;App \/\u0026gt;) 并发渲染 vs 同步渲染 在同步渲染过程中，每个组件所访问的外部资源都能够保证一致，因为render是一个大的任务。在这个任务完成之前，所有的任务都会被阻塞，包括页面。如果进行一个很重的渲染工作，在完成渲染之前，页面就会卡住无响应。\n而并发渲染则不同，一个render可以被拆分成多个片段，在这个期间可以页面可以继续响应，不会卡死。但同时也带来了新的问题：如果某一次渲染的组件A，B访问了同一个外部资源，而这个资源在A渲染后被更改，然后B再渲染，就导致了视觉上的不一致(visual inconsistent)，不符合直觉。\n例子对比 并发渲染(concurrent rendering)体现在API上就是通过startTransition来触发setter函数。\n这里通过一个在页面上显示鼠标位置的实验，来更加清晰的展示这种情况。\n当点击increment时，手动使页面重新渲染，然后更新页面x的值。\nimport { useState, useCallback, useEffect, useRef, startTransition } from \u0026#39;react\u0026#39; import \u0026#39;.","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-04-12 14:56:18 \u002b0800 \u002b0800","dateModified":"2022-04-12 14:56:18 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/react18\/","keywords":[]}</script>
-<title>React18 updates</title>
-<meta property="og:title" content="React18 updates">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"React18: concurrent rendering","headline":"React18: concurrent rendering","description":"React18更新了什么？ 最大的更新就是并发渲染(concurrent rendering)特性了。这里将同步渲染和并发渲染进行对比，以及了解和测试它所影响的视觉行为。\n其次，使用react18，渲染方式有小的变动如下：\nbefore\nimport React from \u0026#39;react\u0026#39; import ReactDOM from \u0026#39;react-dom\u0026#39; import \u0026#39;.\/index.css\u0026#39; import App from \u0026#39;.\/App\u0026#39; ReactDOM.render( \u0026lt;React.StrictMode\u0026gt; \u0026lt;App \/\u0026gt; \u0026lt;\/React.StrictMode\u0026gt;, document.getElementById(\u0026#39;root\u0026#39;) ) after\nimport { React } from \u0026#39;react\u0026#39; import { createRoot } from \u0026#39;react-dom\/client\u0026#39; import \u0026#39;.\/index.css\u0026#39; import App from \u0026#39;.\/App\u0026#39; const root = createRoot(document.getElementById(\u0026#39;root\u0026#39;)) root.render(\u0026lt;App \/\u0026gt;) 并发渲染 vs 同步渲染 在同步渲染过程中，每个组件所访问的外部资源都能够保证一致，因为render是一个大的任务。在这个任务完成之前，所有的任务都会被阻塞，包括页面。如果进行一个很重的渲染工作，在完成渲染之前，页面就会卡住无响应。\n而并发渲染则不同，一个render可以被拆分成多个片段，在这个期间可以页面可以继续响应，不会卡死。但同时也带来了新的问题：如果某一次渲染的组件A，B访问了同一个外部资源，而这个资源在A渲染后被更改，然后B再渲染，就导致了视觉上的不一致(visual inconsistent)，不符合直觉。\n例子对比 并发渲染(concurrent rendering)体现在API上就是通过startTransition来触发setter函数。\n这里通过一个在页面上显示鼠标位置的实验，来更加清晰的展示这种情况。\n当点击increment时，手动使页面重新渲染，然后更新页面x的值。\nimport { useState, useCallback, useEffect, useRef, startTransition } from \u0026#39;react\u0026#39; import \u0026#39;.","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-04-12 14:56:18 \u002b0800 \u002b0800","dateModified":"2022-04-12 14:56:18 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/react18\/","keywords":[]}</script>
+<title>React18: concurrent rendering</title>
+<meta property="og:title" content="React18: concurrent rendering">
 <meta property="og:type" content="article">
 <meta property="og:description" content="React18更新了什么？ 最大的更新就是并发渲染(concurrent rendering)特性了。这里将同步渲染和并发渲染进行对比，以及了解和测试它所影响的视觉行为。
 其次，使用react18，渲染方式有小的变动如下：
@@ -62,7 +62,7 @@ import { useState, useCallback, useEffect, useRef, startTransition } from &amp;#
 <div class=header-line></div>
 </div>
 <header class=post-header>
-<h1 class=post-title>React18 updates</h1>
+<h1 class=post-title>React18: concurrent rendering</h1>
 <div class="row post-desc">
 <div class=col-xs-6>
 <time class=post-date datetime="2022-04-12 14:56:18 +0800">
@@ -194,9 +194,22 @@ import { useState, useCallback, useEffect, useRef, startTransition } from &amp;#
 <h3 id=hook-usesyncexternalstore>hook: useSyncExternalStore</h3>
 <p>那么，如何解决这种视觉不一致的问题？所以<code>react18</code>也同时提供了一个新的hook：<br>
 <code>useSyncExternalStore</code></p>
-<blockquote>
-<p>TODO: subscribe, snapshot</p>
-</blockquote>
+<p>TODO:</p>
+<p><a href=https://17.reactjs.org/docs/concurrent-mode-reference.html#suspense>document</a></p>
+<ul>
+<li>
+<p>useSyncExternalStore: subscribe, snapshot, Suspense</p>
+</li>
+<li>
+<p>useDeferredValue VS useTransition</p>
+</li>
+<li>
+<p>useTransition vs startTransition</p>
+</li>
+<li>
+<p>Suspense</p>
+</li>
+</ul>
 </div>
 <div class="row middle-xs">
 <div class=col-xs-12>
