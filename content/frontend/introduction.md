@@ -11,10 +11,9 @@ categories: ["Intro"]
 
 而之前感觉通过`hexo` or `hugo`这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，索性还是尝试用`hugo`来继续记录吧。
 
-
 ### Why not `hexo`?
-> written in Go, which it's fast.
 
+> written in Go, which it's fast.
 
 ## About me
 

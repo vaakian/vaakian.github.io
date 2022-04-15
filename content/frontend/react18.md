@@ -1,5 +1,5 @@
 ---
-title: "React18 updates"
+title: "React18: concurrent rendering"
 date: 2022-04-12T14:56:18+08:00
 draft: false
 categories: ["Frontend", "React"]
@@ -139,4 +139,14 @@ function App() {
 那么，如何解决这种视觉不一致的问题？所以`react18`也同时提供了一个新的hook：\
 `useSyncExternalStore`
 
-> TODO: subscribe, snapshot
+TODO: 
+
+[document](https://17.reactjs.org/docs/concurrent-mode-reference.html#suspense)
+
+- useSyncExternalStore: subscribe, snapshot, Suspense
+
+- useDeferredValue VS useTransition
+
+- useTransition vs startTransition
+
+- Suspense

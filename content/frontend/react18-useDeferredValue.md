@@ -5,7 +5,6 @@ draft: false
 categories: ["Frontend", "React"]
 ---
 
-
 ## `useDeferredValue`的功能 & 场景
 
 想象一个非常耗时的组件`SlowComponent`，当每次重新渲染时，在渲染结束之前，整个`JavaScript`主线程被阻塞(block)，无法处理任何事件，处于假死状态。
@@ -13,6 +12,7 @@ categories: ["Frontend", "React"]
 所以以下的`input`在输入新的值时，需要等到所有组件被`render`，`input`框才会更新显示新的值。\
 而`SlowComponent`耗时大约`1s`才返回结果，所以从键盘输入 => 到页面上显示结果，需要等待`1s`。\
 包括`input`输入框。
+
 ```js
 function App() {
   const [text, setText] = useState("hello")
@@ -33,6 +33,7 @@ const SlowComponent = React.memo(({ text }) => {
   return <div>{text}</div>
 })
 ```
+
 在线测试，改变1次输入框，输入框需要在`500ms`后响应。\
 https://codesandbox.io/s/goofy-khayyam-3q410q?file=/src/App.js
 
@@ -44,6 +45,7 @@ https://codesandbox.io/s/goofy-khayyam-3q410q?file=/src/App.js
 > 它可以让一个state在单次渲染中，先返回上一次的值，当渲染任务结束时，再更新最新值，然后再触发一次渲染。
 
 所以得到下面修改后的代码，`input`框的响应非常及时，不会被`SlowComponent`阻塞。
+
 ```js
 import { useDeferredValue } from 'react'
 
@@ -73,7 +75,9 @@ function App() {
 https://codesandbox.io/s/awesome-dewdney-rb9epf?file=/src/App.js
 
 ## 手动实现
+
 知道了`useDeferredValue`的功能，那么这里也能过手动模拟一下它的行为，经测试与原版`useDeferredValue`效果一致。
+
 ```js
 function useDeferredValue2(newVal) {
   const [current, setCurrent] = useState(newVal)
@@ -87,9 +91,8 @@ function useDeferredValue2(newVal) {
 ```
 
 ## 小结
+
 到这里，就明白了`react18`的重心是放到了「异步（并发）渲染（concurrent rendering）」上，让更加紧急的渲染先完成，最后再去渲染相对来说不那么紧急的任务。或者是说`短任务优先`，让耗时小的任务先做，耗时长的任务后做。从而提高页面的响应性（more responsive）。
-
-
 
 ### 本文的在线测试链接
 
@@ -98,7 +101,6 @@ https://codesandbox.io/s/goofy-khayyam-3q410q?file=/src/App.js
 
 优化后，输入框更新响应及时。\
 https://codesandbox.io/s/awesome-dewdney-rb9epf?file=/src/App.js
-
 
 ### 剩下的问题
 

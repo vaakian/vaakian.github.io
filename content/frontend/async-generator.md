@@ -9,11 +9,14 @@ categories: ["Frontend", "JavaScript"]
 这里以学习为目的，简单用一个例子来模拟它们的行为，能够有一个直观的理解。
 
 需要的前置知识，不再赘述：
+
 - [ES6 async/await](https://www.google.com/search?q=es6+async%2Fawait)
 - [ES6 generator](https://www.google.com/search?q=es6+generator)
 
 ### 创建一个异步加法函数
+
 延迟1秒返回加法结果，方便实验。
+
 ```ts
 function addAsync(x: number, y: number): Promise<number> {
   return new Promise((resolve, reject) => {
@@ -23,7 +26,9 @@ function addAsync(x: number, y: number): Promise<number> {
   })
 }
 ```
+
 ### 实现单个yield（模拟await）
+
 ```ts
 function doAsync(g: () => Generator): void {
   // 调用异步函数main，返回一个可迭代的iterator
@@ -39,13 +44,18 @@ function* main() {
 }
 doAsync(main)
 ```
+
 ![bash](/images/2022-03-06-14-54-29.png)
 
 ### 多个yield
+
 迭代支持多个yield，并处理异步/同步/字面量，和错误处理。
+
 #### 异步函数执行器
+
 简单的递归行为，结束一个promise之后，再允许生成器`g`继续执行，直到所有的`yield`执行完毕，即`done`为真时结束运行。
 此处对value（为yield后面表达式的值）需要进行判断，可能是一个promise，也可能直接就是一个字面量值。
+
 ```ts
 function doAsync(g: () => Generator): void {
   const it = g()
@@ -73,12 +83,12 @@ function doAsync(g: () => Generator): void {
 // }
 ```
 
-
 #### 运行
 
 记住，await后面不一定是异步行为，可能是一个字面量，可能是一个同步任务。所以`doAsync`要做处理。
 
 以下异步相当于 `async` 替换为 `*`，await替换为 `yield`。
+
 ```ts
 function* main() {
   const result1: number = yield 123
@@ -95,7 +105,6 @@ doAsync(main)
 
 ![rest](/images/20220306-1.png)
 
-
 #### 错误处理
 
 如果promise是被reject捕获，则直接抛出一个错误。
@@ -110,8 +119,8 @@ promise
   .then(v => iterate(v))
   .catch(err => it.throw(err))
 ```
-剩下的太简单，懒得写了，就到这。
 
+剩下的太简单，懒得写了，就到这。
 
 #### return处理
 
