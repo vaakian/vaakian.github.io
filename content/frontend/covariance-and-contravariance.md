@@ -44,19 +44,13 @@ type R3 = Assignable<Parameters<Son>, Parameters<Father>> // true
 ## 问题出在哪里？
 通过Google，找到两个关键词：`covariance`和`contravariance`
 
-<!-- 1. 什么是covariance？
+1. 什么是covariance？
 
-- co => together
-- variance => change
-
-所以意为，一起发生变化，A降则B降，A升则B升，反之亦然。
+> Covariance accept `subtype` but doesn't accept `supertype`
 
 2. 什么是contravariance？
 
-- contra => opposite
-- variance => change
-
-所以与covariance相反，A升则B降，A降则B升，反之亦然。 -->
+> Contravariance accept `supertype` but doesn't accept `subtype`
 
 ![](images/20220415135421.png) 
 
