@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Study Notes</title><link>https://note.vaakian.com/categories/nginx/</link><description>Recent content in Nginx on Study Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 12 Apr 2022 15:16:09 +0800</lastBuildDate><atom:link href="https://note.vaakian.com/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx Reverse Proxy Path</title><link>https://note.vaakian.com/frontend/nginx-reverse-proxy-path/</link><pubDate>Tue, 12 Apr 2022 15:16:09 +0800</pubDate><guid>https://note.vaakian.com/frontend/nginx-reverse-proxy-path/</guid><description>假设服务器域名为vaakian.com，访问uri为http://vaakian.com/api/user，对比以下反向代理的效果。
+1. 结尾都不打斜杠/ location /api { proxy_pass http://127.0.0.1:8080 } 反代结果
+http://127.0.0.1:8080/api/user 2. location 打斜杠，proxy_pass 不打 location /api/ { proxy_pass http://127.0.0.1:8080 } 反代结果
+http://127.0.0.1:8080/api/user 所以，如果 proxy_pass 不打斜杠，那么实际访问的路由部分是原封不动的拼接的。
+2. location 不打，proxy_pass 打斜杠 location /api { proxy_pass http://127.0.0.1:8080/ } 反代结果，
+http://127.0.0.1:8080//user 2. location 和 proxy_pass 都打斜杠 location /api/ { proxy_pass http://127.0.0.1:8080/ } 反代结果，
+http://127.0.0.1:8080/user 所以，proxy_pass 打斜杠时实际匹配到的 location 会被清楚掉。</description></item></channel></rss>
