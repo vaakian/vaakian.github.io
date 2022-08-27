@@ -7,9 +7,9 @@
 <meta name=author content="VAANOTE">
 <meta property="og:url" content="https://note.vaakian.com/frontend/three-ways-of-overloading/">
 <link rel=canonical href=https://note.vaakian.com/frontend/three-ways-of-overloading/><link rel=alternate type=application/atom+xml href=https://note.vaakian.com/index.xml title="Study Notes">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"Three Ways of Overloading","headline":"Three Ways of Overloading","description":"Definition overload means to provide multiple definitions for a function with the same name but different signatures. In TypeScript, we have three ways to achieve this.\n1. multiple function definitions function sum(a: number): number; function sum(a: number, b: number): string; \/\/ actual implementation function sum(a: any, b?: any) { \/\/ do something } 2. Generic function sum\u0026lt;Args extends any[]\u0026gt;(...args: Args): Args[\u0026#39;length\u0026#39;] extends 1 ? number : string; \/\/ actual implementation function sum(a: any, b?","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-08-27 00:14:17 \u002b0800 \u002b0800","dateModified":"2022-08-27 00:14:17 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/three-ways-of-overloading\/","keywords":[]}</script>
-<title>Three Ways of Overloading</title>
-<meta property="og:title" content="Three Ways of Overloading">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/note.vaakian.com\/"},"articleSection":"frontend","name":"TypeScript: Three Ways of Overloading","headline":"TypeScript: Three Ways of Overloading","description":"Definition overload means to provide multiple definitions for a function with the same name but different signatures. In TypeScript, we have three ways to achieve this.\n1. multiple function definitions function sum(a: number): number; function sum(a: number, b: number): string; \/\/ actual implementation function sum(a: any, b?: any) { \/\/ do something } 2. Generic function sum\u0026lt;Args extends any[]\u0026gt;(...args: Args): Args[\u0026#39;length\u0026#39;] extends 1 ? number : string; \/\/ actual implementation function sum(a: any, b?","inLanguage":"en-US","author":"VAANOTE","creator":"VAANOTE","publisher":"VAANOTE","accountablePerson":"VAANOTE","copyrightHolder":"VAANOTE","copyrightYear":"2022","datePublished":"2022-08-27 00:14:17 \u002b0800 \u002b0800","dateModified":"2022-08-27 00:14:17 \u002b0800 \u002b0800","url":"https:\/\/note.vaakian.com\/frontend\/three-ways-of-overloading\/","keywords":[]}</script>
+<title>TypeScript: Three Ways of Overloading</title>
+<meta property="og:title" content="TypeScript: Three Ways of Overloading">
 <meta property="og:type" content="article">
 <meta property="og:description" content="Definition overload means to provide multiple definitions for a function with the same name but different signatures. In TypeScript, we have three ways to achieve this.
 1. multiple function definitions function sum(a: number): number; function sum(a: number, b: number): string; // actual implementation function sum(a: any, b?: any) { // do something } 2. Generic function sum&amp;lt;Args extends any[]&amp;gt;(...args: Args): Args[&amp;#39;length&amp;#39;] extends 1 ? number : string; // actual implementation function sum(a: any, b?">
@@ -46,7 +46,7 @@
 <div class=header-line></div>
 </div>
 <header class=post-header>
-<h1 class=post-title>Three Ways of Overloading</h1>
+<h1 class=post-title>TypeScript: Three Ways of Overloading</h1>
 <div class="row post-desc">
 <div class=col-xs-6>
 <time class=post-date datetime="2022-08-27 00:14:17 +0800">
