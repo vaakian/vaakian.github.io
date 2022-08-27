@@ -1,5 +1,5 @@
 ---
-title: "Three Ways of Overloading"
+title: "TypeScript: Three Ways of Overloading"
 date: 2022-08-27T00:14:17+08:00
 draft: false
 categories: ["TypeScript"]
