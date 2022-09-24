@@ -23,7 +23,7 @@ Tree-shaking是一种用于消除JavaScript上下文中的未引用代码(dead-c
 早期大部分node包都是commonJS格式，也就是通过require来引入。它有一个致命的缺陷：因为它的动态性，无法在编译时就确定依赖关系，所以很难找到不用的代码进行tree-shaking。
 
 到了ESModule时代，Tree-shaking变得容易起来。\
-最早的Tree-shaking是由Rollup.js提出的，它的就是利用ESM的静态优势，通过静态分析找出模块之间的依赖关系然后把没有用到的代码去掉。
+tree-shaking概念最早是由Rollup.js提出的，它就是利用ESM的静态优势，通过静态分析找出模块之间的依赖关系然后把没有用到的代码去掉。
 
 ## 那么早期没有ESM，tree-shaking技术的时候，怎么做到按需打包？
 
