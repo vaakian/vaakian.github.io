@@ -113,4 +113,7 @@ function useCamera(constraints, videoRef) { const storedStream = useRef(null) //
 2022本科应届生，侥幸入职某互联网大厂。</description></item><item><title>Introduction</title><link>https://note.vaakian.com/frontend/introduction/</link><pubDate>Tue, 14 Jan 2020 20:09:20 +0800</pubDate><guid>https://note.vaakian.com/frontend/introduction/</guid><description>Getting Started 从很久很久以前就想记录下来日常的学习笔记（不是博客），但都无疾而终。从wordpress=&amp;gt;Notion=&amp;gt;github issue都感觉差点味道。
 而之前感觉通过hexo or hugo这种编译型的静态部署来记录又太麻烦，但现在需要它们的可定制性，索性还是尝试用hugo来继续记录吧。
 Why not hexo? written in Go, which it&amp;rsquo;s fast.
-About me 主前端，不过其它的也都有接触， 对网络安全感兴趣，算是一名业余脚本小子， 2022本科应届生，即将入职某互联网大厂。</description></item></channel></rss>
+About me 主前端，不过其它的也都有接触， 喜欢探索新事物，喜欢开源。
+对网络安全感兴趣，算是一名业余脚本小子，
+2022本科应届生，即将入职某互联网大厂。
+Find me on Github: @vaakian</description></item></channel></rss>
