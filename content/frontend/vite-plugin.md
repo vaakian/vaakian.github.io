@@ -1,5 +1,5 @@
 ---
-title: 'write a simple Vite plugin'
+title: 'Write a simple Vite plugin'
 date: 2022-05-10T14:50:32+08:00
 draft: false
 categories: ['Vite']
