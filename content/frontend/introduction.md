@@ -18,5 +18,8 @@ categories: ["Intro"]
 ## About me
 
 主**前端**，不过其它的也都有接触，
-对网络安全感兴趣，算是一名业余脚本小子，
+喜欢探索新事物，喜欢开源。\
+对网络安全感兴趣，算是一名业余脚本小子，\
 2022本科应届生，即将入职某互联网大厂。
+
+Find me on Github: [@vaakian](https://github.com/vaakian)
