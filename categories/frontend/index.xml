@@ -3,7 +3,7 @@
 通俗解释 从英文字面意思“摇树”上来看，就是把一棵树上的不需要的叶子摇下来，只保留需要的叶子。在编程语言中，Tree-shaking就是指在打包的时候，把不需要的代码摇下来，只保留需要的代码。
 Tree-shaking的原理 早期大部分node包都是commonJS格式，也就是通过require来引入。它有一个致命的缺陷：因为它的动态性，无法在编译时就确定依赖关系，所以很难找到不用的代码进行tree-shaking。
 到了ESModule时代，Tree-shaking变得容易起来。
-最早的Tree-shaking是由Rollup.js提出的，它的就是利用ESM的静态优势，通过静态分析找出模块之间的依赖关系然后把没有用到的代码去掉。
+tree-shaking概念最早是由Rollup.js提出的，它就是利用ESM的静态优势，通过静态分析找出模块之间的依赖关系然后把没有用到的代码去掉。
 那么早期没有ESM，tree-shaking技术的时候，怎么做到按需打包？ 在Tree-shaking没有兴起的时候，前端库在打包的时候可以不进行bundle，每个组件都保留成单独的文件，引入的时候也需要按照文件目录引入。也就是通过“文件隔离”来达到静态性。这种方式的缺点是：引入的路径会非常长，增加了学习成本，不够优雅。
 import { Button } from &amp;#39;antd/lib/button&amp;#39; import { Table } from &amp;#39;antd/lib/table&amp;#39; 所以后来前端库在按需引入时会同时提供一个插件，它会帮你自动匹配文件目录，然后引入。显而易见这种方式的缺点是：需要在项目中配置额外的插件。
 import { Button } from &amp;#39;antd&amp;#39; // 通过插件自动转换成👇 var Button = require(&amp;#39;antd/lib/button&amp;#39;) 不管配置插件有多简单，只要多一个步骤，总会产生新的问题，给开发者增加学习成本。
